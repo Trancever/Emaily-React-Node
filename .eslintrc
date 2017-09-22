@@ -1,5 +1,8 @@
 {
   "extends": "standard",
+  "plugins": [
+    "react"
+  ],
   "rules": {
     "space-before-function-paren": [
       "error",
@@ -8,6 +11,12 @@
     "comma-dangle": [
       "error",
       "always-multiline"
+    ],
+    "react/jsx-uses-react": 2,
+    "react/jsx-uses-vars": 2,
+    "jsx-quotes": [
+      "error",
+      "prefer-double"
     ]
   }
 }
