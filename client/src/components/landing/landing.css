@@ -1,0 +1,17 @@
+.landing-wrapper {
+  background-image: url('../../images/feedback-bg.jpg');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  text-align: center;
+  height: 620px;
+}
+
+.header {
+  font-size: 80px;
+  color: #333333;
+}
+
+.description {
+  color: #212121;
+  padding-top: 10px;
+}
