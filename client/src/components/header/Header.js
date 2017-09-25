@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 import { logOutUser } from '../../actions'
+import Payments from '../payments/Payments'
 
 class Header extends Component {
   handleLogOut() {
@@ -15,6 +16,10 @@ class Header extends Component {
     return this.props.auth
       ? <li onClick={this.handleLogOut.bind(this)}><a>Logout</a></li>
       : <li><a href="/auth/google">Login With Google</a></li>
+  }
+
+  renderPayments() {
+    return this.props.auth ? <li><Payments /></li> : null
   }
 
   render() {
@@ -29,6 +34,7 @@ class Header extends Component {
               Emaily
             </Link>
             <ul className="right">
+              {this.renderPayments()}
               {this.renderAuthInformation()}
             </ul>
           </div>
