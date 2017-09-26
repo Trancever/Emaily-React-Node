@@ -6,7 +6,7 @@ const authReducer = (state = null, action) => {
     case LOGGED_OUT:
       return payload
     case FETCH_USER:
-      return !!payload.data
+      return payload
     default:
       return state
   }

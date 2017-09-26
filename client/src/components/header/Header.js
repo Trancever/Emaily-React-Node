@@ -22,6 +22,11 @@ class Header extends Component {
     return this.props.auth ? <li><Payments /></li> : null
   }
 
+  renderCredits() {
+    const { auth } = this.props
+    return auth ? <li className="credits-info">Credits: {auth.credits}</li> : null
+  }
+
   render() {
     return (
       <nav>
@@ -35,6 +40,7 @@ class Header extends Component {
             </Link>
             <ul className="right">
               {this.renderPayments()}
+              {this.renderCredits()}
               {this.renderAuthInformation()}
             </ul>
           </div>
