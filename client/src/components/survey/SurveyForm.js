@@ -11,9 +11,10 @@ class SurveyForm extends Component {
           onSubmit={this.props.handleSubmit(values => console.log(values))}
         >
           <Field
-            type="text"
             name="surveyTitle"
             component={SurveyField}
+            label="Title"
+            size={12}
           />
           <button type="submit">Submit</button>
         </form>
