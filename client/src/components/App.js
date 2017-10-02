@@ -6,9 +6,8 @@ import { fetchUser } from '../actions'
 
 import Header from './header/Header'
 import Landing from './landing/Landing'
-
-const Dashboard = () => <h2>Dashboard</h2>
-const SurveyNew = () => <h2>SurveyNew</h2>
+import Dashboard from './dashboard/Dashboard'
+import SurveyNew from './survey/SurveyNew'
 
 class App extends Component {
   componentDidMount() {

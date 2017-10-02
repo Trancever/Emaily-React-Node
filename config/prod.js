@@ -6,4 +6,5 @@ module.exports = {
   stripePublishableKey: process.env.STRIPE_PUBLISHABLE_KEY,
   stripeSecretKey: process.env.STRIPE_SECRET_KEY,
   sendGridKey: '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',
+  domain: 'https://lit-reef-11138.herokuapp.com',
 }
