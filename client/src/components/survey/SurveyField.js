@@ -1,10 +1,18 @@
 import React from 'react'
-import { Row, Input } from 'react-materialize'
+import { Row, Input, Icon } from 'react-materialize'
 
-const SurveyField = (props) => {
+const SurveyField = ({ input, label, size, icon, type, meta: { error, touched } }) => {
   return (
     <Row>
-      <Input {...props.input} s={props.size} label={props.label} />
+      <Input
+        {...input}
+        type="text"
+        s={size}
+        label={label}
+        error={touched && error}
+      >
+        <Icon>{icon}</Icon>
+      </Input>
     </Row>
   )
 }
