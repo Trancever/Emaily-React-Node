@@ -4,13 +4,8 @@ import _ from 'lodash'
 import { Link } from 'react-router-dom'
 
 import SurveyField from './SurveyField'
-
-const FIELDS = [
-  { name: 'title', label: 'Survey Title', icon: 'title' },
-  { name: 'subject', label: 'Subject Line', icon: 'subject' },
-  { name: 'body', label: 'Email Body', icon: 'message' },
-  { name: 'Recipient List', label: 'emails', icon: 'email' },
-]
+import validateEmails from '../../utils/validateEmails'
+import formFields from './surveyFormData.json'
 
 class SurveyForm extends Component {
   constructor() {
@@ -20,11 +15,11 @@ class SurveyForm extends Component {
 
   render() {
     return (
-      <div className="container">
+      <div>
         <form
-          onSubmit={this.props.handleSubmit(values => console.log(values))}
+          onSubmit={this.props.handleSubmit(this.props.onSubmit)}
         >
-          {_.map(FIELDS, field => {
+          {_.map(formFields, field => {
             return <Field
               name={field.name}
               label={field.label}
@@ -35,15 +30,15 @@ class SurveyForm extends Component {
               key={field.label}
             />
           })}
-          <Link to="/surveys" className="red btn-flat white-text">
+          <Link to="/surveys" className="red btn white-text">
             Cancel
           </Link>
-          <button type="submit" className="teal btn-flat right white-text">
+          <button type="submit" className="teal btn right white-text">
             Next
             <i className="material-icons right">done</i>
           </button>
         </form>
-      </div>
+      </div >
     )
   }
 }
@@ -55,11 +50,17 @@ const capitalizeFirstLetter = (string) => {
 const validate = (values) => {
   let errors = {}
 
-  _.each(FIELDS, ({ name }) => {
+  _.each(formFields, ({ name }) => {
     if (!values[name] || values[name].length < 5) {
       errors[name] = capitalizeFirstLetter(`${name} must contain at least 5 characters`)
     }
   })
+
+  const invalidEmails = validateEmails(values.recipients).join(', ')
+
+  if (invalidEmails.length > 0) {
+    errors.recipients = `Invalid addresses: ${invalidEmails}`
+  }
 
   return errors
 }
@@ -67,4 +68,5 @@ const validate = (values) => {
 export default reduxForm({
   validate,
   form: 'surveyForm',
+  destroyOnUnmount: false,
 })(SurveyForm)

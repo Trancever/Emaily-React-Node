@@ -13,18 +13,23 @@ module.exports = (app) => {
 
   app.post('/api/survey', requirelogin, requireCredits, async (req, res) => {
     const { title, subject, body, recipients } = req.body
+    const rec = recipients.split(',').map(email => email.trim())
+    const emails = recipients.split(',').map(email => ({
+      email: email.trim(),
+    }))
     const survey = new Survey({
       title,
       body,
       subject,
-      recipients: recipients.split(',').map(email => email.trim()),
+      recipients: emails,
       _user: req.user.id,
       dateSent: Date.now(),
     })
 
-    const mailer = new Mailer(survey, surveyTemplate(survey))
+    const mailer = new Mailer({ subject, recipients: rec }, surveyTemplate(survey))
     try {
-      await mailer.send()
+      const res = await mailer.send()
+      console.log(res)
       await survey.save()
 
       req.user.credits -= 1

@@ -9,7 +9,7 @@ const SurveyField = ({ input, label, size, icon, type, meta: { error, touched } 
         type="text"
         s={size}
         label={label}
-        error={touched && error}
+        error={touched && error ? error : ''}
       >
         <Icon>{icon}</Icon>
       </Input>

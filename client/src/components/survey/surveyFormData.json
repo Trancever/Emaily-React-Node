@@ -1,0 +1,22 @@
+[
+  {
+    "name": "title",
+    "label": "Survey Title",
+    "icon": "title"
+  },
+  {
+    "name": "subject",
+    "label": "Subject Line",
+    "icon": "subject"
+  },
+  {
+    "name": "body",
+    "label": "Email Body",
+    "icon": "message"
+  },
+  {
+    "name": "recipients",
+    "label": "Recipient List",
+    "icon": "email"
+  }
+]

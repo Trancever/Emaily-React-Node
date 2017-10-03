@@ -22,7 +22,7 @@ class Payments extends Component {
 }
 
 const mapStateToProps = state => {
-
+  return {}
 }
 
 export default connect(mapStateToProps, { handleToken })(Payments)
