@@ -5,6 +5,6 @@ module.exports = {
   cookieKey: process.env.COOKIE_KEY,
   stripePublishableKey: process.env.STRIPE_PUBLISHABLE_KEY,
   stripeSecretKey: process.env.STRIPE_SECRET_KEY,
-  sendGridKey: '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',
+  sendGridKey: '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',
   domain: 'https://lit-reef-11138.herokuapp.com',
 }

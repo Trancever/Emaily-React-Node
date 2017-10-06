@@ -11,25 +11,27 @@ module.exports = (app) => {
     res.send('Thanks for voting!')
   })
 
+  app.post('/api/surveys/webhooks', (req, res) => {
+    console.log(req.body)
+    res.send({})
+  })
+
   app.post('/api/survey', requirelogin, requireCredits, async (req, res) => {
     const { title, subject, body, recipients } = req.body
-    const rec = recipients.split(',').map(email => email.trim())
-    const emails = recipients.split(',').map(email => ({
-      email: email.trim(),
-    }))
+
     const survey = new Survey({
       title,
       body,
       subject,
-      recipients: emails,
+      recipients: recipients.split(',').map(email => ({ email: email.trim() })),
       _user: req.user.id,
       dateSent: Date.now(),
     })
 
-    const mailer = new Mailer({ subject, recipients: rec }, surveyTemplate(survey))
+    const mailer = new Mailer(survey, surveyTemplate(survey))
     try {
-      const res = await mailer.send()
-      console.log(res)
+      await mailer.send()
+
       await survey.save()
 
       req.user.credits -= 1
